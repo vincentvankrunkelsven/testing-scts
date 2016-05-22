@@ -114,11 +114,11 @@ while a > 5:
 *** =sct
 ```{python}
 def sct_on_condition_test():
-  test_expression_result({a: 4})
-  test_expression_result({a: 5})
-  test_expression_result({a: 6})
+  test_expression_result({"a": 4})
+  test_expression_result({"a": 5})
+  test_expression_result({"a": 6})
 
 test_while_loop(index = 1,
                 test = sct_on_condition_test,
-                body = lambda: test_expression_output({a:4}))   
+                body = lambda: test_expression_output({"a":4}))   
 ```
