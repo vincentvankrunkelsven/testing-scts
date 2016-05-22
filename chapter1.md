@@ -105,48 +105,20 @@ _, ints = np.unique(movies.genre, return_inverse = True)
 
 *** =solution
 ```{python}
-# Get integer values for genres
-_, ints = np.unique(movies.genre, return_inverse = True)
-
-# Import matplotlib.pyplot
-import matplotlib.pyplot as plt
-
-# Make a scatter plot: runtime on  x-axis, rating on y-axis and set c to ints
-plt.scatter(movies.runtime, movies.rating, c=ints)
-
-# Show the plot
-plt.show()
+a = 10
+while a > 5:
+  print("%s is bigger than 5" % a)
+  a -= 1
 ```
 
 *** =sct
 ```{python}
-# The sct section defines the Submission Correctness Tests (SCTs) used to
-# evaluate the student's response. All functions used here are defined in the 
-# pythonwhat Python package. Documentation can also be found at github.com/datacamp/pythonwhat/wiki
+def sct_on_condition_test():
+  test_expression_result({a: 4})
+  test_expression_result({a: 5})
+  test_expression_result({a: 6})
 
-# Check if the student changed the np.unique() call
-# If it's not called, we know the student removed the call.
-# If it's called incorrectly, we know the student changed the call.
-test_function("numpy.unique",
-              not_called_msg = "Don't remove the call of `np.unique` to define `ints`.",
-              incorrect_msg = "Don't change the call of `np.unique` to define `ints`.")
-# Check if the student removed the ints object
-test_object("ints",
-            undefined_msg = "Don't remove the definition of the predefined `ints` object.",
-            incorrect_msg = "Don't change the definition of the predefined `ints` object.")
-
-# Check if the student imported matplotlib.pyplot like the solution
-# Let automatic feedback message generation handle the feedback messages
-test_import("matplotlib.pyplot", same_as = True)
-
-# Check whether the student used the scatter() function correctly
-# If it's used, but incorrectly, tell them to check the instructions again
-test_function("matplotlib.pyplot.scatter", args = [0], incorrect_msg = "The first argument of `plt.scatter` is incorrect.")
-test_function("matplotlib.pyplot.scatter", args = [1], incorrect_msg = "The second argument of `plt.scatter` is incorrect.")
-
-# Check if the student called the show() function
-# Let automatic feedback message generation handle all feedback messages
-test_function("matplotlib.pyplot.show")
-
-success_msg("Great work!")
+test_while_loop(index = 1,
+                test = sct_on_condition_test,
+                body = lambda: test_expression_output({a:4}))   
 ```
