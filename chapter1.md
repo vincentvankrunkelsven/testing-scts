@@ -122,3 +122,83 @@ test_while_loop(index = 1,
                 test = sct_on_condition_test,
                 body = lambda: test_expression_output({"a":4}))   
 ```
+
+--- type:NormalExercise lang:python xp:100 skills:2 key:9ffb8737d71ff0554a593086ccda71ab8fa1fe0f
+## Importing entire text files
+
+In this exercise, you'll be working with the file `moby_dick.txt`.
+It is a text file that contains the opening sentences of Moby Dick,
+one of the great American novels! Here you'll get experience
+opening a text file, printing its contents to the console and, finally,
+closing it.
+
+
+*** =instructions
+- Open the file `moby_dick.txt`. Make sure to open it as
+read-only and to store it in the variable `'file'`.
+- Print the contents of the file to the console using the `print()` function.
+As Hugo showed in the video, you'll need to apply the method `read` to the
+object `file`.
+- Check whether the file is closed.
+- Close the file using the `close` method and check again that the file 
+is closed.
+
+*** =hint
+- Pass the filename to the 1st argument of `open`; the 2nd argument
+should be `'r'` for 'read-only'.
+- To read a file, use the method `read` and, to close it, the
+method `close`.
+
+*** =pre_exercise_code
+```{python}
+fn = 'https://s3.amazonaws.com/assets.datacamp.com/production/course_998/datasets/moby_opens.txt'
+from urllib.request import urlretrieve
+urlretrieve(fn, 'moby_dick.txt')
+```
+
+*** =sample_code
+```{python}
+# Open a file
+file = open(___, ___ ) 
+
+# Print it to console
+print(___)
+
+# Check whether file is closed
+print(file.closed)
+
+# Close file
+
+
+# Check whether file is closed
+
+```
+
+*** =solution
+```{python}
+# Open a file
+file = open('moby_dick.txt' , 'r') # 'r' is to read only.
+
+# Print it
+print(file.read())
+
+# Check whether file is closed
+print(file.closed)
+
+# Close file
+file.close()
+
+# Check whether file is closed
+print(file.closed)
+```
+
+*** =sct
+```{python}
+test_function("open", incorrect_msg = "Pass the correct arguments to `open()`" )
+
+msg = "Make sure to print out the contents of the file like this: `print(file.read())`."
+test_function("file.read", incorrect_msg = msg)
+test_function("print", 1, incorrect_msg = msg)
+test_function("file.close", not_called_msg = "Make sure to close the file, man!")
+```
+
