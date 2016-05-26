@@ -176,29 +176,67 @@ print(file.closed)
 
 *** =solution
 ```{python}
-# Open a file
-file = open('moby_dick.txt' , 'r') # 'r' is to read only.
-
-# Print it
-print(file.read())
-
-# Check whether file is closed
-print(file.closed)
-
-# Close file
-file.close()
-
-# Check whether file is closed
-print(file.closed)
+def to_decimal(number, base = 2):
+    print("Converting %d from base %s to base 10" % (number, base))
+    number_str = str(number)
+    number_range = range(len(number_str))
+    multipliers = [base ** ((len(number_str) - 1) - i) for i in number_range]
+    return sum([int(number_str[i]) * multipliers[i] for i in number_range])
 ```
 
 *** =sct
 ```{python}
-test_function("open", incorrect_msg = "Pass the correct arguments to `open()`" )
+# All of the following test_function_definition() functions are done on the same
+# function definition.
 
-msg = "Make sure to print out the contents of the file like this: `print(file.read())`."
-test_function("file.read", incorrect_msg = msg)
-test_function("print", 1, incorrect_msg = msg)
-test_function("file.close", not_called_msg = "Make sure to close the file, man!")
+# Test the function, see that the defaults of the arguments are the same.
+# For this function, we don't care about the argument names of the function. 
+# Note: generally, we DO care about the names of the arguments, since they can
+# be used as keywords. arg_defaults and arg_names will be set to True by default.
+
+test_function_definition("to_decimal", arg_defaults = True, arg_names = False)
+
+# Here, a feedback message will be generated. You can overwrite this feedback
+# message by using:
+# test_function_definition("to_decimal", arg_defaults = True, arg_names = False,
+#     arg_defaults_msg = "Use the correct default argument values!")
+# In the following tests, I'll always use the standard feedback messages, remember they
+# can almost always be overwritten.
+
+# We want to test whether the function returns the correct things with certain inputs.
+
+test_function_definition("to_decimal", arg_names = False, arg_defaults = False, # Already tested this
+    results = [
+        (1001101, 2),
+        (1212357, 8)]
+)
+
+# This will run to_decimal(1001101, 2) and to_decimal(1212357, 8) in student and solution
+# environment, and match the results. If they don't match, a feedback message will be generated.
+# Note: here we've set arg_defaults to False, because we already tested this in the first
+# test_function_definition.
+
+# We want to test the output of the function with certain inputs.
+
+test_function_definition("to_decimal", arg_names = False, arg_defaults = False, # Already tested this
+    outputs = [
+        (1234, 6),
+        (8888888, 9)]
+)
+
+# This will run to_decimal(1234, 6) and to_decimal(8888888, 9) in solution and student
+# environment and compare their printed output.
+
+# Finally, we might want them to use a certain function. For this we can do tests specifically
+# on the body of the function. Remember you can use lambda functions or custom functions for this
+# (also see wiki about test_if_else(), test_for_loop() and test_while_loop().
+
+test_function_definition("to_decimal", arg_names = False, arg_defaults = False, # Already tested this 
+    body = lambda: test_function("sum", args = [], incorrect_msg = "you should use the `sum()` function."))
+
+# This will test the body of the function definition, and see if the function sum() is used.
+# Note that the generated feedback will be preceded by: 'In your definition of `to_decimal()`, ...'
+# So if the last test doesn't pass, this feedback will be generated:
+"     In your definition of `to_decimal()`, you should use the `sum()` function.
 ```
 
