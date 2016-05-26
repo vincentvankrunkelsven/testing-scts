@@ -237,6 +237,6 @@ test_function_definition("to_decimal", arg_names = False, arg_defaults = False, 
 # This will test the body of the function definition, and see if the function sum() is used.
 # Note that the generated feedback will be preceded by: 'In your definition of `to_decimal()`, ...'
 # So if the last test doesn't pass, this feedback will be generated:
-"     In your definition of `to_decimal()`, you should use the `sum()` function.
+#     In your definition of `to_decimal()`, you should use the `sum()` function.
 ```
 
