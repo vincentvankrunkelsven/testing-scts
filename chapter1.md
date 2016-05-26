@@ -181,7 +181,8 @@ def to_decimal(number, base = 2):
     number_str = str(number)
     number_range = range(len(number_str))
     multipliers = [base ** ((len(number_str) - 1) - i) for i in number_range]
-    return sum([int(number_str[i]) * multipliers[i] for i in number_range])
+    decimal = sum([int(number_str[i]) * multipliers[i] for i in number_range])
+    return decimal
 ```
 
 *** =sct
